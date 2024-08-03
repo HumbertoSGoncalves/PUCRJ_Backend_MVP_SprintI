@@ -5,7 +5,7 @@ from typing import Union
 
 from  model import Base, Nota
 
-# associação implícita de vinhos e notas
+# Implicit association of wines and notes.
 class Vinho(Base):
     __tablename__ = 'vinho'
 
@@ -30,16 +30,15 @@ class Vinho(Base):
         if data_insercao:
             self.data_insercao = data_insercao
         
-        #Para adicionar vinhos na adega.
-        #Descrição dos argumentos da função:
-        #    vinho: nome de acordo com o rotulo do vinho.
-        #    uva: tipo de uva utilizada na producao do vinho (Cabernet Sauvignon, Tannah, Merlot, etc).
-        #    ano: ano de producao do vinho.
-        #    categoria: a categoria do vinho, se se trata de vinho Fino, Reservado, de Mesa, etc.
-        #   fabricante: identificacao do produtor do vinho.
-        #    data_insercao: data de quando o vinho foi adicionado à adega (adicionada automaticamente).
+        # To add wines to the cellar:
+        #    vinho: name according to the wine label.
+        #    uva: type of grape used in wine production (e.g., Cabernet Sauvignon, Tannat, Merlot).
+        #    ano: the year of the wine's production.
+        #    categoria: category of the wine, such as Fine, Reserved, Table, etc.
+        #    fabricante: identification of the wine producer.
+        #    data_insercao: the date when the wine was added to the cellar (added automatically).
 
 
-    #adição de notas aos vinhos da adega.
+    #adding notes to the wines of the cellar.
     def adiciona_nota(self, nota:Nota):
         self.notas.append(nota)
