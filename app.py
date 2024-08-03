@@ -15,20 +15,20 @@ app = OpenAPI(__name__, info=info)
 CORS(app)
 
 
-# tags que serão expostas na documentação
+# Tags that will be shown in the documentation
 home_tag = Tag(name="Documentacoes", description="Seleção de documentação: Swagger, Redoc ou RapiDoc (prefiro o Swagger!)")
 vinho_tag = Tag(name="Vinho", description="Retire, adicione, ou encontre os seus vinhos na adega.")
 nota_tag = Tag(name="Nota", description="Adicione notas sobre os vinhos da adega.")
 
 
-# redirecionamento para o /openApi, permitindo a escolha de documentação desejada para averiguar funcionamento das APIs.
+# Redirect to /openApi, allowing the selection of the desired documentation to verify the functionality of the APIs.
 @app.get('/', tags=[home_tag])
 def home():
     return redirect('/openapi')
 
 
-# dados a serem inseridos para que um vinho seja adicionado na adega, assim como as possibibilidades de erros e suas respostas
-# em caso de vinhos repetidos, somente o log informará que já é existente, não tendo impacto no frontend
+# Data to be entered for a wine to be added to the cellar, as well as possible errors and their responses.
+# In case of duplicate wines, only the log will indicate that it already exists, having no impact on the frontend.
 @app.post('/vinho', tags=[vinho_tag],
           responses={"200": VinhoSchema, "409": ErrorSchema, "400": ErrorSchema})
 def add_vinho(form: VinhoSchema):
@@ -57,11 +57,11 @@ def add_vinho(form: VinhoSchema):
         return {"message": error_msg}, 400
 
 
-#listar todos os vinhos existentes na adega
+# List all existing wines in the cellar.
 @app.get('/vinhos', tags=[vinho_tag],
         responses={"200": ListagemVinhosSchema, "404": ErrorSchema})
 def get_vinhos():
-    """Retorna todos os vinhos que estão na sua adega!
+    """Returns all the wines that are in your cellar.
     """
     logger.debug(f"Coletando vinhos ")
     session = Session()
@@ -74,11 +74,11 @@ def get_vinhos():
         return apresenta_vinhos(vinhos), 200
 
 
-# retorna todas as informaçoes associadas ao vinho procurado
+# Returns all the information associated with the requested wine.
 @app.get('/vinho', tags=[vinho_tag],
         responses={"200": VinhoViewSchema, "404": ErrorSchema})
 def get_vinho(query: VinhoBuscaSchema):
-    """Retorna um vinho específico com as suas referentes notas!
+    """Returns a specific wine along with its associated notes.
     """
     vinho_id = query.vinho
     logger.debug(f"Coletando dados sobre vinho #{vinho_id}")
@@ -93,11 +93,11 @@ def get_vinho(query: VinhoBuscaSchema):
         return apresenta_vinho(vinho), 200
 
 
-# deleta vinhos da adega, assim como retorna mensagens de erro em caso o vinho não seja encontrado
+# Deletes wines from the cellar and returns error messages if the wine is not found.
 @app.delete('/vinho', tags=[vinho_tag],
             responses={"200": VinhoDelSchema, "404": ErrorSchema})
 def del_vinho(query: VinhoBuscaSchema):
-    """Retirar vinhos da sua adega!
+    """Removes wines from the cellar.
     """
     vinho_nome = unquote(unquote(query.vinho))
     print(vinho_nome)
@@ -114,11 +114,11 @@ def del_vinho(query: VinhoBuscaSchema):
         return {"message": error_msg}, 404
 
 
-#inserção de notas referentes aos vinhos da adega, assim como mensagens de erro em caso o vinho não exista
+# Inserts notes related to the wines in the cellar and returns error messages if the wine does not exist.
 @app.post('/nota', tags=[nota_tag],
         responses={"200": VinhoViewSchema, "404": ErrorSchema})
 def add_nota(form: NotaSchema):
-    """Adicione notas aos vinhos da sua adega!
+    """Add notes to the wines in your cellar.
     """
     vinho_id  = form.vinho_id
     logger.debug(f"Adicionando comentários ao vinho #{vinho_id}")
