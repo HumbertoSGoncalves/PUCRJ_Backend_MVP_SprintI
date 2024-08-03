@@ -11,7 +11,7 @@ class Nota(Base):
     data_insercao = Column(DateTime, default=datetime.now())
     vinho = Column(Integer, ForeignKey("vinho.pk_vinho"), nullable=False)
 
-    # cria uma nota com data de inserção
+    # Creates a note with the insertion date.
     def __init__(self, texto:str, data_insercao:Union[DateTime, None] = None):
         self.texto = texto
         if data_insercao:
