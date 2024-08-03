@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Union
 from  model import Base
 
-# relacionamento entre notas e vinhos
+# Relationship between notes and wines.
 class Nota(Base):
     __tablename__ = 'nota'
     id = Column(Integer, primary_key=True)
