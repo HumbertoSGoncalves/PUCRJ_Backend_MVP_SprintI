@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
 
-#mensagem de erro em caso de falhas.
+# error message.
 class ErrorSchema(BaseModel):
     message: str
