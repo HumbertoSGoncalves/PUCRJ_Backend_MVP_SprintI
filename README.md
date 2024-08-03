@@ -1,30 +1,30 @@
-# MVP Backend - Adega Virtual
+# MVP Backend - Virtual Wine Cellar
 
-Este projeto contempla os requisitos para a entrega do MVP da **Sprint I: Desenvolvimento Full Stack Básico** do curso de Pós Graduação em Engenharia de Software da PUC RIO.
+This project meets the requirements for the delivery of the MVP for **Sprint I: Basic Full Stack Development** of the Postgraduate Program in Software Engineering at PUC RIO.
+(https://especializacao.ccec.puc-rio.br/especializacao/engenharia-de-software)
 
-O objetivo é utilizar do conteúdo ensinado durante as aulas para a criação de uma single page application, contando com front e backend. Para que isso fosse possível, foi criada uma Adega virtual, onde os vinhos podem ser adicionados, consultados, ou excluídos.
+The goal is to use the content taught during the classes to create a single-page application with both the front and back end. A virtual Wine Cellar was designed to make this possible, where wines can be added, consulted, or deleted.
 
-Mais especificamente, para os códigos aqui encaminhados, será explorado o **backend do MVP**.
+More specifically, the **backend of the MVP** will be explored for the codes provided here.
 
 ---
-## Como executar 
+## How to execute 
 
-- Atualizar todas as libs python listadas conforme o arquivo `requirements.txt`. Ou seja, execute, no ambiente escolhido, a instalação através do comando: 
+- Update all the listed Python libraries according to the `requirements.txt` file. In other words, the installation can be executed in the chosen environment using the command:
 ```
 pip install -r requirements.txt;
 ```
-- Para executar a API: 
+
+- To run the API: 
 ```
 flask run --host 0.0.0.0 --port 5000
 ```
 
-- Recomendá-se utilizar o comando abaixo, quando em modo de desenvolvimento:
+- It is recommended to use the following command when in development mode:
 ```
 flask run --host 0.0.0.0 --port 5000 --reload
 ```
-Desta forma o servidor é reinicia automaticamente após mudanças no código fonte.
+By doing this, the server restarts automatically after changes to the source code are made.
 
-
-Acesse o [http://localhost:5000/#/](http://localhost:5000/#/) no navegador de preferência para verificar a API em execução.
-
-Posteriormente, basta testar quaisquer rotas da API que desejar para gerenciar a sua adega virtual. Cada rota tem sua devida descrição na documentação acessada.
+Access [http://localhost:5000/#/](http://localhost:5000/#/) in your preferred browser to check the running API.
+Afterwards, you can test any API routes you want to manage your virtual wine cellar. Each route is appropriately described in the accessible documentation.
