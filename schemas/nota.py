@@ -1,13 +1,13 @@
 from pydantic import BaseModel
 
 
-# como uma nota é adicionada a um vinho
+# How a note is added to a wine.
 class NotaSchema(BaseModel):
     vinho_id: int = 1
     texto: str = "Notas a serem adicionadas."
 
 
-# estrutura para retirada de nota de algum vinho
+# Structure for retrieving a note from a wine.
 class NotaDelSchema(BaseModel):
     message: str
     vinho: str
