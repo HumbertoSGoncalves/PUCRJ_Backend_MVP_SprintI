@@ -1,4 +1,4 @@
 from sqlalchemy.ext.declarative import declarative_base
 
-# Classe base para objetos recém criados
+# Base class for new objects.
 Base = declarative_base()
