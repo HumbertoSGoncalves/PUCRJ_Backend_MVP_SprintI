@@ -3,7 +3,7 @@ from typing import List
 from model.vinho import Vinho
 from schemas import NotaSchema
 
-# como novo vinho deverá ser adicionado na adega
+# How a new wine should be added to the cellar.
 class VinhoSchema(BaseModel):
     vinho: str = "Cristatus"
     uva: str = "Cabernet Sauvignon"
@@ -12,17 +12,17 @@ class VinhoSchema(BaseModel):
     fabricante: str = "SUR ANDINO"
 
 
-# estrutura que será utilizada na busca por vinhos específicos na adega
+# The structure that will be used for searching for specific wines in the cellar.
 class VinhoBuscaSchema(BaseModel):
     vinho: str = "vinho"
 
 
-#retorna todos os vinhos da adega
+# retrieves all wines from the cellar.
 class ListagemVinhosSchema(BaseModel):
     vinhos:List[VinhoSchema]
 
 
-# para que seja possível o retorno referente as informações do vinho em diferentes rotas
+# Returns information about the wine through different routes.
 def apresenta_vinhos(vinhos: List[Vinho]):
     result = []
     for vinho in vinhos:
@@ -36,7 +36,7 @@ def apresenta_vinhos(vinhos: List[Vinho]):
     return {"vinhos": result}
 
 
-# todas as informações do vinho, incluindo dados de ambas tabelas
+# All information about the wine, including data from both tables.
 class VinhoViewSchema(BaseModel):
     id: int = 1
     vinho: str = "Cristatus"
@@ -48,13 +48,13 @@ class VinhoViewSchema(BaseModel):
     notas:List[NotaSchema]
 
 
-# estrutura retornada quando um vinho é retirado da adega
+# Structure returned when a wine is removed from the cellar.
 class VinhoDelSchema(BaseModel):
     message: str
     vinho: str
 
 
-# retorna o vinho com todas notas adicionadas
+# Returns the wine will all notes included.
 def apresenta_vinho(vinho: Vinho):
     return {
         "id": vinho.id,
